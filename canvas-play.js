@@ -36,6 +36,7 @@ canvasRenderingContext.lineTo(135, 50)
 canvasRenderingContext.stroke()
 
 //Tail
+canvasRenderingContext.strokeStyle = '#333'
 canvasRenderingContext.beginPath()
 canvasRenderingContext.moveTo(470, 230)
 canvasRenderingContext.lineTo(525, 10)
