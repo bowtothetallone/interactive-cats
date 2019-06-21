@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Meowsters</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="generator" content="ALL THE CATS">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-    body {
-        background-color: black;
-        text-align: center;
-    }
-    #cat-canvas {
-        border: 1px solid #333;
-    }
-</style>
+    <title>Meowsters</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="generator" content="ALL THE CATS">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <canvas id="cat-canvas" height="400" width="600"></canvas>
-    <script src="canvas-play.js"></script>
+    <div class="page-wrap">
+        <h1>Feed the Cat</h1>
+        <div class="controls">
+            <input class="input" placeholder="" id="nomNumber" type="text"/>
+            <label class="label" for="nomNumber">Number of Noms</label>
+        </div>
+        <div id="canvas-wrap">
+            <canvas style="display:block" id="cat-canvas" height="400" width="600"></canvas>
+        </div>
+    </div>
     <script src="cat.js"></script>
+    <script src="cat-image.js"></script>
 </body>
 </html>

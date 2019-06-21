@@ -1,5 +1,5 @@
 var myCat = {
-    'name': 'Hobbes',
+    name: 'Hobbes',
     'color': 'Orange',
     'pattern': 'Stripes',
     'parents': {
@@ -8,8 +8,7 @@ var myCat = {
     }
 }
 
-console.log(myCat['name'])
-console.log(myCat.parents.mother)
+
 
 var catname
 for (name in myCat) {
@@ -29,20 +28,6 @@ for (i = 0; i < catProperties.length; i += 1) {
     var propertyName = catProperties[i]
     console.log(propertyName + ': ' + myCat[propertyName])
 }
-
-myCat.name
-delete myCat.name
-
-var MYCAT = {}
-
-MYCAT.properties = {
-    'name': 'Moe',
-    'color': 'Tuxedo',
-    'needs': 'Litter'
-}
-
-console.log(MYCAT)
-console.log('The End')
 
 function Cat (name, color){
     this.name = name 
@@ -65,7 +50,7 @@ Cat.prototype = {
     }
 }
 
-var catA = new Cat('Grover', 'Magenta')
+var catA = new Cat('Grover', 'orange')
 var catB = new Cat('Baxter', 'Blue')
 
 console.log(catA, catB)
