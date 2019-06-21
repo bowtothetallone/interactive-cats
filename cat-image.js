@@ -9,6 +9,7 @@ canvasRenderingContext.lineJoin = 'round'
 canvasRenderingContext.lineCap = 'round'
 canvasRenderingContext.lineWidth = 15
 
+function drawCat() {
 //frontLegs
 canvasRenderingContext.beginPath()
 canvasRenderingContext.moveTo(125, 360)
@@ -61,20 +62,27 @@ canvasRenderingContext.beginPath()
 canvasRenderingContext.moveTo(200, 200)
 canvasRenderingContext.lineTo(465, 200)
 canvasRenderingContext.stroke() 
+}
 
 //chonky body
 var weight = 0
 var nom = document.getElementById('nomNumber')
 
 function chonk(){
-    canvasRenderingContext.beginPath()
-    canvasRenderingContext.ellipse(332, 200, weight, 130, Math.PI / 2, 0, 2 * Math.PI)
-    canvasRenderingContext.fillStyle = myColor
-    canvasRenderingContext.fill()
-    canvasRenderingContext.strokeStyle = myColor
-    canvasRenderingContext.stroke()
+  canvasRenderingContext.beginPath()
+  canvasRenderingContext.ellipse(332, 200, weight, 130, Math.PI / 2, 0, 2 * Math.PI)
+  canvasRenderingContext.fillStyle = myColor
+  canvasRenderingContext.fill()
+  canvasRenderingContext.strokeStyle = myColor
+  canvasRenderingContext.stroke()
 }
-nom.addEventListener("keyup", function(){
-    weight=this.value
-    chonk()
-}, false)
+
+nom.oninput = function() {
+  weight = this.value
+  canvasRenderingContext.clearRect(0, 0, canvas.width, canvas.height);
+  drawCat()
+  chonk()
+}
+
+drawCat()
+
