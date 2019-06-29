@@ -16,7 +16,8 @@ var cats = catNames.map(function (catName, index) {
     color: 'hsl(' + (((index / catNames.length) + 0.0625) * 360) + ', 75%, 60%)',
     x: 100 + (50 * index),
     y: 100,
-    scale: 0.3 + (0.1 * index)
+    scale: 0.3 + (0.1 * index),
+    sleep: 50 + (index * 50)
   })
 })
 

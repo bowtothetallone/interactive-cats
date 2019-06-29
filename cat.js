@@ -4,6 +4,7 @@ function Cat (config){
     this.x = config.x || 0
     this.y = config.y || 0
     this.scale = config.scale || 1
+    this.sleep = config.sleep || this.sleep
     console.log('New cat was created ', this)
 }
 
@@ -94,7 +95,14 @@ Cat.prototype = {
         context.ellipse(332, 200, weight, 130, Math.PI / 2, 0, 2 * Math.PI)
         context.fill()
         context.stroke()
-      
+
+        //name text
+        context.font = '32px sans-serif'
+        var statsX = 250
+        context.fillText('name: ' + this.name, statsX, -50)
+        context.fillText('sleep: ' + this.sleep, statsX, -10)
+        context.fillText('weight: ' + this.weight, statsX, 30)
+
         context.restore()
     }      
 }
