@@ -1,88 +1,92 @@
-var canvas = document.getElementById('cat-canvas')
-
-var canvasRenderingContext = canvas.getContext('2d')
-
-var myColor = catA.color
-canvasRenderingContext.strokeStyle = myColor
-canvasRenderingContext.fillStyle = myColor
-canvasRenderingContext.lineJoin = 'round'
-canvasRenderingContext.lineCap = 'round'
-canvasRenderingContext.lineWidth = 15
-
-function drawCat() {
-//frontLegs
-canvasRenderingContext.beginPath()
-canvasRenderingContext.moveTo(125, 360)
-canvasRenderingContext.lineTo(150, 360)
-canvasRenderingContext.lineTo(200, 200)
-
-canvasRenderingContext.moveTo(250, 360)
-canvasRenderingContext.lineTo(275, 360)
-canvasRenderingContext.lineTo(235, 200)
-
-//BackLegs
-canvasRenderingContext.moveTo(360, 360)
-canvasRenderingContext.lineTo(385, 360)
-canvasRenderingContext.lineTo(425, 200)
-
-canvasRenderingContext.moveTo(475, 360)
-canvasRenderingContext.lineTo(500, 360)
-canvasRenderingContext.lineTo(460, 200)
-
-//neck
-canvasRenderingContext.moveTo(185, 120)
-canvasRenderingContext.lineTo(200, 190)
-
-canvasRenderingContext.stroke()
-
-//Tail
-canvasRenderingContext.beginPath()
-canvasRenderingContext.ellipse(470, 125, 75, 35, Math.PI * .50, 0, Math.PI, true);
-canvasRenderingContext.stroke()
-
-//Ears
-canvasRenderingContext.beginPath()
-canvasRenderingContext.moveTo(125, 105)
-canvasRenderingContext.lineTo(140, 55)
-canvasRenderingContext.lineTo(160, 80)
-canvasRenderingContext.lineTo(185, 55)
-canvasRenderingContext.lineTo(192, 105)
-
-
-canvasRenderingContext.stroke()
-canvasRenderingContext.fill()
-
-//head
-canvasRenderingContext.beginPath()
-canvasRenderingContext.ellipse(152, 120, 50, 40, Math.PI, 0, 2 * Math.PI)
-canvasRenderingContext.fill()
-
-//default body
-canvasRenderingContext.beginPath()
-canvasRenderingContext.moveTo(200, 200)
-canvasRenderingContext.lineTo(465, 200)
-canvasRenderingContext.stroke() 
-}
-
-//chonky body
-var weight = 0
 var nom = document.getElementById('nomNumber')
+var canvas = document.getElementById('cat-canvas')
+var context = canvas.getContext('2d')
 
-function chonk(){
-  canvasRenderingContext.beginPath()
-  canvasRenderingContext.ellipse(332, 200, weight, 130, Math.PI / 2, 0, 2 * Math.PI)
-  canvasRenderingContext.fillStyle = myColor
-  canvasRenderingContext.fill()
-  canvasRenderingContext.strokeStyle = myColor
-  canvasRenderingContext.stroke()
+nom.oninput = function () {
+  catA.weight = this.value
+
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  drawCat(catB)
+  drawCat(catA)
 }
 
-nom.oninput = function() {
-  weight = this.value
-  canvasRenderingContext.clearRect(0, 0, canvas.width, canvas.height);
-  drawCat()
-  chonk()
+function drawCat (cat) {
+  var x = cat.x || 0
+  var y = cat.y || 0
+  var scale = cat.scale || 1
+  var weight = cat.weight || 1
+  var color = cat.color
+
+  context.save()
+  context.translate(x, y)
+  context.scale(scale, scale)
+
+  context.strokeStyle = color
+  context.fillStyle = color
+  context.lineJoin = 'round'
+  context.lineCap = 'round'
+  context.lineWidth = 15  
+
+  //frontLegs
+  context.beginPath()
+  context.moveTo(125, 360)
+  context.lineTo(150, 360)
+  context.lineTo(200, 200)
+
+  context.moveTo(250, 360)
+  context.lineTo(275, 360)
+  context.lineTo(235, 200)
+
+  //BackLegs
+  context.moveTo(360, 360)
+  context.lineTo(385, 360)
+  context.lineTo(425, 200)
+
+  context.moveTo(475, 360)
+  context.lineTo(500, 360)
+  context.lineTo(460, 200)
+
+  //neck
+  context.moveTo(185, 120)
+  context.lineTo(200, 190)
+
+  context.stroke()
+
+  //Tail
+  context.beginPath()
+  context.ellipse(470, 125, 75, 35, Math.PI * .50, 0, Math.PI, true);
+  context.stroke()
+
+  //Ears
+  context.beginPath()
+  context.moveTo(125, 105)
+  context.lineTo(140, 55)
+  context.lineTo(160, 80)
+  context.lineTo(185, 55)
+  context.lineTo(192, 105)
+
+  context.stroke()
+  context.fill()
+
+  //head
+  context.beginPath()
+  context.ellipse(152, 120, 50, 40, Math.PI, 0, 2 * Math.PI)
+  context.fill()
+
+  //default body
+  context.beginPath()
+  context.moveTo(200, 200)
+  context.lineTo(465, 200)
+  context.stroke()
+
+  //chonky body
+  context.beginPath()
+  context.ellipse(332, 200, weight, 130, Math.PI / 2, 0, 2 * Math.PI)
+  context.fill()
+  context.stroke()
+
+  context.restore()
 }
 
-drawCat()
-
+drawCat(catB)
+drawCat(catA)

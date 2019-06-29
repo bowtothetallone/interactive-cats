@@ -8,8 +8,6 @@ var myCat = {
     }
 }
 
-
-
 var catname
 for (name in myCat) {
     if (typeof myCat[catname] == 'function') {
@@ -29,13 +27,17 @@ for (i = 0; i < catProperties.length; i += 1) {
     console.log(propertyName + ': ' + myCat[propertyName])
 }
 
-function Cat (name, color){
-    this.name = name 
-    this.color = color
+function Cat (config){
+    this.name = config.name
+    this.color = config.color
+    this.x = config.x || 0
+    this.y = config.y || 0
+    this.scale = config.scale || 1
     console.log('New cat was created ', this)
 }
 
 Cat.prototype = {
+    weight: 1,
     speed: 5,
     sleep: 9000,
     foodLevel: 0,
@@ -50,7 +52,19 @@ Cat.prototype = {
     }
 }
 
-var catA = new Cat('Grover', 'orange')
-var catB = new Cat('Baxter', 'Blue')
+var catA = new Cat({
+    name: 'Grover',
+    color: 'orange',
+    x: 100,
+    y: 100,
+    scale: 0.3
+})
+var catB = new Cat({
+    name: 'Baxter',
+    color: 'Blue',
+    x: 200,
+    y: 100,
+    scale: 0.4
+})
 
 console.log(catA, catB)
