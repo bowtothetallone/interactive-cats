@@ -7,7 +7,11 @@ var catNames = [
   'Baxter',
   'Bruce',
   'Janet',
-  'Admiral'
+  'Admiral',
+  'Mary',
+  'Bob',
+  'Jezebel',
+  'Quinton'
 ]
 
 var cats = catNames.map(function (catName, index) {
@@ -31,6 +35,7 @@ var drawScene = function () {
 drawScene()
 
 nom.addEventListener('input', function (event) {
+  // console.log('The nom slider fired an input event.', event)
   var weight = event.target.value
   cats.forEach(function (cat, catIndex) {
     cat.weight = weight
@@ -40,8 +45,17 @@ nom.addEventListener('input', function (event) {
 })
 
 canvas.addEventListener('mousemove', function (event) {
+  // console.log('The canvas fired a mouse move event.', event)
+  cats.reverse()
+  cats.forEach(function (cat, catIndex) {
+    var nextCat = cats[catIndex + 1]
+    if(nextCat) {
+      cat.x = (1.5 * nextCat.x) - 150
+      cat.y = (1.5 * nextCat.y) - 100
+    }
+  })
+  cats.reverse()
   cats[0].x = event.offsetX
   cats[0].y = event.offsetY
-
   drawScene()
 })

@@ -31,6 +31,7 @@ Cat.prototype = {
         context.save()
         context.translate(x, y)
         context.scale(scale, scale)
+        context.translate(-300, -200)
       
         context.strokeStyle = color
         context.fillStyle = color
