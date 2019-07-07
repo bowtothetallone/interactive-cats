@@ -3,6 +3,7 @@ function Cat (config){
     this.color = config.color
     this.x = config.x || 0
     this.y = config.y || 0
+    this.z = config.z || 0
     this.scale = config.scale || 1
     this.sleep = config.sleep || this.sleep
     console.log('New cat was created ', this)

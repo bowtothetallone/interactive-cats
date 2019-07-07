@@ -15,23 +15,56 @@ var ascendingCats = [
   'Peter',
   'Annabelle'
 ].map(function (catName, index, catNames) {
+  var num = catNames.length
+  return new Cat({
+    name: catName,
+    color: 'hsl(' + ((((num - index) / num) + 0.0625) * 360) + ', 75%, 60%)',
+    x: 0,
+    y: 0,
+    z: index * 50,
+    scale: 0.3
+  })
+})
+
+var descendingCats = [
+  'Christine',
+  'Blue',
+  'Houdini',
+  'Cupcake',
+  'Jolene',
+  'Kaffy',
+  'Ellen',
+  'Kerianne',
+  'Caiser'
+].map(function (catName, index, catNames) {
   return new Cat({
     name: catName,
     color: 'hsl(' + (((index / catNames.length) + 0.0625) * 360) + ', 75%, 60%)',
     x: 0,
     y: 0,
-    scale: 0.3 + (0.1 * index)
+    z: index * -50,
+    scale: 0.3
   })
 })
 
-var cats = [].concat(ascendingCats)
+var cats = [].concat(ascendingCats, descendingCats)
+var planeDistance = 800
 
 var drawScene = function () {
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.save()
   context.translate(canvas.width * 0.5, canvas.height * 0.5)
-  cats.forEach(function (cat, catIndex) {
-    cat.draw(context)
+  cats.sort(function (a, b){
+    return a.z - b.z
+  })
+  cats.forEach(function (cat) {
+    var zFraction = ((cat.z / planeDistance) * 2) + 1
+    if (zFraction > 0 && zFraction < 2) {
+      context.save()
+      context.scale(zFraction, zFraction)
+      cat.draw(context)
+      context.restore()
+    }
   })
   context.restore()
 }
@@ -61,11 +94,23 @@ var animate = function (time) {
   ascendingCats.forEach(function (cat, catIndex) {
     var nextCat = ascendingCats[catIndex + 1]
     if(nextCat) {
-      cat.x = (1.25 * nextCat.x)
-      cat.y = (1.25 * nextCat.y)
+      cat.x = nextCat.x
+      cat.y = nextCat.y
     }
   })
   ascendingCats.reverse()
+
+  descendingCats[0].x = Math.cos(-phase) * distanceFromCenter
+  descendingCats[0].y = Math.sin(-phase) * distanceFromCenter
+  descendingCats.reverse()
+  descendingCats.forEach(function (cat, catIndex) {
+    var nextCat = descendingCats[catIndex + 1]
+    if(nextCat) {
+      cat.x = nextCat.x
+      cat.y = nextCat.y
+    }
+  })
+  descendingCats.reverse()
   drawScene()
 }
 
