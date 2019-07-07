@@ -98,11 +98,11 @@ Cat.prototype = {
         context.stroke()
 
         //name text
-        context.font = '32px sans-serif'
-        var statsX = 250
-        context.fillText('name: ' + this.name, statsX, -50)
-        context.fillText('sleep: ' + this.sleep, statsX, -10)
-        context.fillText('weight: ' + this.weight, statsX, 30)
+        // context.font = '32px sans-serif'
+        // var statsX = 250
+        // context.fillText('name: ' + this.name, statsX, -50)
+        // context.fillText('sleep: ' + this.sleep, statsX, -10)
+        // context.fillText('weight: ' + this.weight, statsX, 30)
 
         context.restore()
     }      
